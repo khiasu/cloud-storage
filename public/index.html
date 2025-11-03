@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Cloud Storage</title>
+  <link rel="stylesheet" href="/styles.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div id="auth" class="auth-container">
+    <div class="auth-card">
+      <div class="auth-header">
+        <svg class="logo-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+        </svg>
+        <h1>Cloud Storage</h1>
+        <p class="subtitle">Secure file storage and sharing</p>
+      </div>
+      
+      <div class="auth-form">
+        <div class="input-group">
+          <label for="email">Email</label>
+          <input id="email" type="email" placeholder="you@example.com" autocomplete="email" />
+        </div>
+        
+        <div class="input-group">
+          <label for="password">Password</label>
+          <input id="password" type="password" placeholder="••••••••" autocomplete="current-password" />
+        </div>
+        
+        <div class="button-group">
+          <button id="login" class="btn btn-primary">Sign In</button>
+          <button id="register" class="btn btn-secondary">Create Account</button>
+        </div>
+        
+        <div id="authStatus" class="status-message"></div>
+      </div>
+    </div>
+  </div>
+
+  <div id="app" class="app-container hidden">
+    <nav class="navbar">
+      <div class="nav-content">
+        <div class="nav-brand">
+          <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M3 15v4c0 1.1.9 2 2 2h14a2 2 0 0 0 2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+          </svg>
+          <span>Cloud Storage</span>
+        </div>
+        <div class="nav-actions">
+          <button id="themeToggle" class="btn-icon" aria-label="Toggle theme">
+            <svg class="theme-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path class="sun" d="M12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/>
+              <path class="sun" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707"/>
+              <path class="moon" d="M20.354 15.354A9 9 0 0 1 8.646 3.646 9.003 9.003 0 0 0 12 21a9.003 9.003 0 0 0 8.354-5.646z"/>
+            </svg>
+          </button>
+          <span id="userEmail" class="user-email"></span>
+          <button id="logoutBtn" class="btn-logout">Sign Out</button>
+        </div>
+      </div>
+    </nav>
+
+    <main class="main-content">
+      <div class="upload-section">
+        <div class="upload-card">
+          <div class="upload-area" id="uploadArea">
+            <svg class="upload-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4M17 8l-5-5-5 5M12 3v12"/>
+            </svg>
+            <h3>Upload Files</h3>
+            <p>Drag and drop or click to browse</p>
+            <input id="fileInput" type="file" class="file-input" />
+            <button id="uploadBtn" class="btn btn-upload">Choose File</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="files-section">
+        <div class="section-header">
+          <h2>Your Files</h2>
+          <span id="fileCount" class="file-count">0 files</span>
+        </div>
+        
+        <div id="emptyState" class="empty-state">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M13 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V9z"/>
+            <polyline points="13 2 13 9 20 9"/>
+          </svg>
+          <p>No files yet</p>
+          <span>Upload your first file to get started</span>
+        </div>
+        
+        <div id="fileList" class="file-list"></div>
+      </div>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+  <div id="modal" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h3 id="modalTitle"></h3>
+        <button class="modal-close" onclick="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body" id="modalBody"></div>
+    </div>
+  </div>
+
+  <script>
+    // Prevent FOUC (Flash of Unstyled Content)
+    document.documentElement.style.visibility = 'hidden';
+  </script>
+  <script src="/js/theme.js" type="module"></script>
+  <script src="/js/app.js" type="module"></script>
+  <script>
+    // Initialize theme after DOM is loaded
+    document.addEventListener('DOMContentLoaded', () => {
+      initTheme();
+    });
+  </script>
+</body>
+</html>
