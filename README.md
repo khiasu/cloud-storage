@@ -1,167 +1,86 @@
-# Cloud File Storage
+Cloud File Storage
 
-A simple yet powerful cloud file storage application that lets you store, manage, and share files easily. No complex setup required - just follow the steps below to get started!
+A straightforward application for storing and managing files. You can upload files, organize them, and share download links with others.
 
-## 🚀 Quick Start Guide
+Getting Started
 
-### Prerequisites
-- Download and install [Node.js](https://nodejs.org/) (LTS version recommended)
-- A modern web browser (Chrome, Firefox, Edge, or Safari)
+What You’ll Need
 
-### Step 1: Get the Files
-1. Download the project as a ZIP file and extract it, or clone it using Git:
-   ```bash
-   git clone https://github.com/yourusername/cloud-file-storage.git
-   ```
-2. Open the project folder in File Explorer
+· Node.js – Download and install it from nodejs.org (pick the LTS version).
+· A web browser (Chrome, Firefox, Edge, or Safari).
 
-### Step 2: Install Dependencies
-1. Open Command Prompt (Windows) or Terminal (Mac/Linux)
-2. Navigate to the project folder:
-   ```bash
-   cd path/to/cloud-file-storage
-   ```
-3. Install the required packages:
-   ```bash
-   npm install
-   ```
+Setup Steps
 
-### Step 3: Configure the Application
-1. In the project folder, find the file named `.env.example`
-2. Right-click it and select "Rename"
-3. Remove ".example" from the filename (it should be just `.env`)
-4. Open the `.env` file with a text editor (like Notepad)
-5. Change the `JWT_SECRET` to any random string (e.g., `my_super_secret_key_123`)
+1. Get the project
+   · Download the ZIP or run:
+     ```bash
+     git clone https://github.com/senyeksola/Cloud-File-Storage.git
+     ```
+   · Open the folder in your file manager.
+2. Install packages
+   · Open terminal/command prompt in the project folder.
+   · Run:
+     ```bash
+     npm install
+     ```
+3. Set up the environment file
+   · Find .env.example in the project folder.
+   · Rename it to .env.
+   · Open .env and set a JWT_SECRET (any random text, e.g., my_secret_key).
+4. Start the app
+   · In the terminal, run:
+     ```bash
+     npm start
+     ```
+   · Wait for “Server is running on port 3000”.
+5. Open in browser
+   · Go to http://localhost:3000.
+   · Create an account using an email and password.
+6. Upload files
+   · Drag and drop files into the upload area or click “Choose File”.
 
-### Step 4: Start the Application
-1. In the same Command Prompt/Terminal window, run:
-   ```bash
-   npm start
-   ```
-2. Wait until you see a message saying "Server is running on port 3000"
+Basic Usage
 
-### Step 5: Access the Application
-1. Open your web browser
-2. Go to: http://localhost:3000
-3. You should see the login screen
+· Upload: Drag files or click to browse.
+· Download: Click the download (↓) button next to a file.
+· Share: Click the share (🔗) button to create a temporary link.
+· Delete: Click the delete (×) button to remove a file.
+· Theme: Use the sun/moon icon to switch between light and dark mode.
 
-### Step 6: Create an Account
-1. Click on "Create Account"
-2. Enter your email and a strong password
-3. Click "Sign Up"
-4. You're in! Start uploading files by dragging them to the upload area
+Restarting the App
 
-## 📱 Using the Application
+If you close the terminal, the app stops. To restart:
 
-### Uploading Files
-- Drag and drop files into the upload area, or
-- Click "Choose File" to browse your computer
+1. Open terminal in the project folder.
+2. Run npm start.
+3. Go to http://localhost:3000 again.
 
-### Managing Files
-- Click the download (↓) button to download a file
-- Click the share (🔗) button to get a shareable link
-- Click the delete (×) button to remove a file
+Troubleshooting
 
-### Changing Themes
-- Click the sun/moon icon in the top-right corner to toggle between light and dark mode
+· Check Node.js is installed: run node -v in terminal.
+· If port 3000 is busy, close other programs using it.
+· If the app behaves unexpectedly, delete the node_modules folder and run npm install again.
+· Files are stored locally in the uploads folder. File info is kept in database.sqlite.
 
-## 🔄 Restarting the Application
-If you close the Command Prompt/Terminal, the app will stop. To start it again:
-1. Open Command Prompt/Terminal
-2. Navigate to the project folder
-3. Run `npm start`
-4. Open http://localhost:3000 in your browser
+Notes on Security
 
-## ❓ Need Help?
-If you run into any issues:
-1. Make sure Node.js is installed (type `node -v` in Command Prompt to check)
-2. Ensure no other program is using port 3000
-3. Try deleting the `node_modules` folder and running `npm install` again
-4. Contact [Your Name] at [Your Email] for assistance
+· Keep your .env file private.
+· Use a strong password for your account.
+· This app is intended for local or personal use. Additional security should be added for public hosting.
 
-## 📁 Where Are My Files Stored?
-Your uploaded files are saved in the `uploads` folder in the project directory. The file information is stored in a SQLite database file named `database.sqlite`.
+API Endpoints
 
-## 🔒 Security Note
-- Never share your `.env` file with anyone
-- Choose a strong password for your account
-- The application is designed for personal/local use - for production use, additional security measures are recommended
+· POST /api/auth/register – Register a new user.
+· POST /api/auth/login – Log in.
+· POST /api/files/upload – Upload a file.
+· GET /api/files/list – List uploaded files.
+· GET /api/files/download/:id – Download a file.
+· DELETE /api/files/:id – Delete a file.
+· POST /api/files/share/:id – Create a shareable link.
+· GET /api/files/shared?token=... – Access a shared file.
 
-## 🌟 Features
+Backup
 
-- **User Authentication**
-  - Secure registration and login system
-  - JWT-based authentication
-  - Password hashing with bcrypt
-  - Protected API endpoints
+You can export file metadata using the backup utility in src/utils/backup.js. To back up files themselves, copy the uploads folder.
 
-- **File Management**
-  - Drag-and-drop file uploads
-  - File preview and download
-  - File sharing with unique, expiring links
-  - File deletion with confirmation
-
-- **User Experience**
-  - Responsive design for all devices
-  - Dark/Light theme toggle
-  - Intuitive file browser
-  - Real-time feedback with toast notifications
-  - Loading states and progress indicators
-
-- **Security**
-  - Secure file storage with unique identifiers
-  - Protected file access
-  - Input validation and sanitization
-  - CSRF protection
-
-## 🚀 Quick Start
-
-### Prerequisites
-- Node.js 16.x or higher
-- npm 8.x or higher
-
-### Installation
-
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/senyeksola/Cloud-File-Storage.git
-   cd cloud-storage
-   ```
-
-2. **Install dependencies**
-   ```bash
-   npm install
-   ```
-
-3. **Set up environment variables**
-   Create a `.env` file in the root directory:
-   ```env
-   PORT=3000
-   JWT_SECRET=your_secure_jwt_secret_here
-   UPLOAD_DIR=uploads
-   ```
-
-4. **Start the development server**
-4. **Run**:
-   ```bash
-   npm start
-   ```
-   App: http://localhost:3000
-
-No MySQL or manual setup needed! Database and storage folders are created automatically.
-
-## API
-- POST `/api/auth/register` { email, password }
-- POST `/api/auth/login` { email, password }
-- POST `/api/files/upload` multipart `file`
-- GET `/api/files/list`
-- GET `/api/files/download/:id`
-- DELETE `/api/files/:id`
-- POST `/api/files/share/:id` { ttl }
-- GET `/api/files/shared?token=...`
-
-## Backup/Recovery
-Utility functions in `src/utils/backup.js` for metadata JSON export/import. Storage objects should be backed up separately (copy `uploads/` or rely on S3 versioning/lifecycle).
-
-## Notes
-- This is a starter. Add rate limiting, validation, and admin features per your needs.
+---
